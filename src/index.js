@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Popup from "./popup/popup"
+import Dictaphone from './popup/speech-recognition';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Popup />
+    {/* <Dictaphone/> */}
   </React.StrictMode>
 );
 
