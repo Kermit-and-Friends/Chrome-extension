@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Our Application: hAIndle
+**hAIndle** is a revolutionary application that translates American Sign Language (ASL) to text and speech to text, 
+bridging the gaps in communication between persons with disabilities and their peers. We aim to enable such individuals to better 
+communicate and connect with their peers, in hopes that they would feel more included in their communities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How we can make a difference
+With our Mobile Application, persons with disabilities would be able to translate their ASL to text
+in real time, allowing them to communicate with their peers who may not be well versed with ASL. With our Web 
+Application, the same individuals would be able to translate their ASL to text and send it virtually over their
+browser. Their peers can then use our speech to text feature to communicate back to them. 
 
-## Available Scripts
+Persons with disabilities who once found it challenging to communicate with their peers can now do so through 
+**hAIndle**, enabling them to better connect with them, forming more meaningful relationships with their community.
 
-In the project directory, you can run:
+## Future developments
+Our current AI model detects individual letters in ASL, and translates it into text. We would hope to expand our model 
+to be able to accept British Sign Language (BSL) and be able to translate full words to text. At the same time, we 
+would hope to increase the reliability of our model, improving its accuracy. 
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We also hope to integrate our application into more mainstream web services such as Zoom Meetings, to better empower 
+persons with disabilities.

@@ -1,18 +1,23 @@
 {
   "manifest_version": 3,
   "name": "hAIndle",
-  "background": {
-    "service_worker": "./background.js"
-  },
   "action": {
-    "default_popup": "./index.html"
+    "default_icon": {
+      "128": "icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "permissions": [
     "tabs",
     "tabCapture",
     "activeTab",
-    "desktopCapture"
+    "desktopCapture",
+    "scripting",
+    "contextMenus"
   ],
+
   "version": "1.0.0",
   "host_permissions": ["<all_urls>"]
 }

@@ -2,17 +2,13 @@ import React, { useEffect, useState } from 'react';
 import socketIO from "socket.io-client";
 import "./popup.css"
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
+import Logo from "../assets/img/logo.png"
+import useWindowDimensions from './window-dimensions';
 var recordingInterval = null
-function handleDesktopStart(socket, setText) {
+function handleDesktopStart(socket, setText, width, height) {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     const video = document.querySelector("#videoElement");
-
-    var width = 200
-    var height = 100
-    video.width = width
-    video.height = height
 
     if (navigator.mediaDevices.getDisplayMedia) {
         navigator.mediaDevices.getDisplayMedia({ video: true })
@@ -41,15 +37,11 @@ function handleDesktopStart(socket, setText) {
 
 }
 
-function handleCameraStart(socket, setText) {
+function handleCameraStart(socket, setText, width, height) {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     const video = document.querySelector("#videoElement");
 
-    var width = 200
-    var height = 100
-    video.width = width
-    video.height = height
 
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -79,6 +71,7 @@ function handleCameraStart(socket, setText) {
 }
 
 const Popup = () => {
+    const {height, width} = useWindowDimensions()
     const [recording, setRecording] = useState(false)
     const [text, setText] = useState('')
     const [prediction, setPrediction] = useState('')
@@ -88,14 +81,15 @@ const Popup = () => {
     const {
         transcript
     } = useSpeechRecognition();
-    var socket = socketIO.connect("http://127.0.0.1:9990");
+    var socket = socketIO.connect("http://localhost:9990");
     let speechRecognition = new window.webkitSpeechRecognition();
     socket.on('connect', function () {
         console.log("Connected...!", socket.connected)
     })
     var autoCorrect = true
     const [recognition, setRecognition] = useState('')
-    
+    const width_ratio = 0.7
+    const height_ratio = 0.5
     useEffect(() => {
         const handleClose = event => {
             socket.disconnect()
@@ -121,9 +115,9 @@ const Popup = () => {
     useEffect(() => {
         if (recording) {
             if (input == "camera") {
-                handleCameraStart(socket, setText)
+                handleCameraStart(socket, setText, width*width_ratio, height*height_ratio)
             } else if (input == "desktop") {
-                handleDesktopStart(socket, setText)
+                handleDesktopStart(socket, setText, width*width_ratio, height *height_ratio)
             }
         }
         else {
@@ -133,21 +127,21 @@ const Popup = () => {
     speechRecognition.onresult = (event) => {
         const temp = event.results[0][0].transcript
         console.log(temp)
-        (setRecognition(recognition + temp))
+            (setRecognition(recognition + temp))
     }
     useEffect(() => {
         if (usingSpeech) {
             setRecognition('')
             console.log("Start Listening...")
-            // SpeechRecognition.startListening()
-            speechRecognition.start()
+            SpeechRecognition.startListening()
+            // speechRecognition.start()
 
         } else {
             console.log("Stop Listening")
-            // SpeechRecognition.stopListening()
-            // console.log(transcript)
-            speechRecognition.stop()
-        
+            SpeechRecognition.stopListening()
+            console.log(transcript)
+            // speechRecognition.stop()
+
 
         }
     }, [usingSpeech])
@@ -155,9 +149,10 @@ const Popup = () => {
         {
             input == null
                 ? <div className='home-container'>
-                    <h1 id='title'>hAlndle <i class="fa-solid fa-hands"></i></h1>
-
-                    <h2>Choose an input..</h2>
+                    <div>
+                        <img className='logo' src={Logo}></img>
+                    </div>
+                    <h2>Choose an input...</h2>
                     <div id='input-selection-container'>
                         <button className='input-selection-btn' onClick={() => setInput("desktop")}>
                             <i class="fa-solid fa-desktop input-selection-icon"></i>
@@ -169,14 +164,14 @@ const Popup = () => {
                 </div>
                 : <div>
                     <div id="container">
-                        <div id='player'>
-                            <video autoplay='true' id="videoElement" width={200} height={100}></video>
-                        </div>
-                        <canvas id="canvas" width="200" height="100"></canvas>
+                    
+                            <video autoplay='true' id="videoElement" width={width*width_ratio} height={height*height_ratio}></video>
+                        
+                        <canvas id="canvas" width={width*width_ratio} height={height*height_ratio}></canvas>
                     </div>
                     <div id='text'>
                         {
-                            usingSpeech ? <p>{recognition}</p> : <p>{autocorrected}</p>
+                            usingSpeech ? <p>{transcript}</p> : <p>{autocorrected}</p>
                         }
 
                     </div>
